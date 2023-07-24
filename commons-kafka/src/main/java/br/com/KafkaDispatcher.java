@@ -39,9 +39,7 @@ public class KafkaDispatcher<T> implements Closeable {
     }
 
     public void send(String topic, String key, T value) throws ExecutionException, InterruptedException {
-
-        var record = new ProducerRecord<String, T>(topic, key, value);
-
+        var record = new ProducerRecord<>(topic, key, value);
         producer.send(record, callback()).get();
     }
 
